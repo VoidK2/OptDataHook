@@ -13,10 +13,14 @@ def load_parameters(file_name):
     return result
 
 
-# def write_in_csv():
+def write_in_csv(row_write_in):
+    with open('.\out\data.csv', 'a+', newline='') as f:
+        f_csv = csv.writer(f)
+        f_csv.writerow(row_write_in)
 
 
 if __name__ == '__main__':
+    cnt = 0
     dataset_list = ['appendicitis.dat', 'banana.dat', 'phoneme.dat', 'ring.dat']
     sample_size_list = [106, 5300, 5404, 7400]
     column_name_list = ['id', 'fileName', 'sampleSize', 'eliteSize', 'smoothParameter', 'iterationNumber',
@@ -32,6 +36,7 @@ if __name__ == '__main__':
                     full_execute_parameters = 'Opt.exe' + load_parameters(dataset_list[sample_count])
                     # print(full_execute_parameters)
                     cmd_process = subprocess.Popen(full_execute_parameters, shell=True,
+                                                   stdin=subprocess.PIPE,
                                                    stdout=subprocess.PIPE,
                                                    stderr=subprocess.PIPE)
                     cmd_process.stdin.write((str(sample_size_now) + '\n').encode('gbk'))
@@ -42,4 +47,11 @@ if __name__ == '__main__':
                     tmp = info.decode('gbk').split('\r\n')
                     consume_time = tmp[0]
                     optimal_value = tmp[1]
-                    row
+                    cnt = cnt+1
+                    row_write = [cnt, dataset_list[sample_count], sample_size_now, elite_size_now, smooth_parameter_now,
+                                 iteration_number_now, consume_time, optimal_value]
+                    write_in_csv(row_write)
+
+
+
+

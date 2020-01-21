@@ -1,10 +1,17 @@
-import csv
+import subprocess
 
 if __name__ == '__main__':
-    column_name_list = ['id', 'fileName', 'sampleSize', 'eliteSize', 'smoothParameter', 'iterationNumber',
-                            'consumesTimes', 'optimalValue']
-    testdata=[1,1,1,1,1,1,1,1]
-    with open('1.csv','a+',newline='') as f:
-        f_csv = csv.writer(f)
-        for i in range(0,5):
-            f_csv.writerow(testdata)
+    full_execute_parameters = '.\\OptCoreExecutable\\Opt.exe -m CE -p Kmedian -f ring.dat'
+    # print(full_execute_parameters)
+    cmd_process = subprocess.Popen(full_execute_parameters, shell=True,
+                                   stdin=subprocess.PIPE,
+                                   stdout=subprocess.PIPE,
+                                   stderr=subprocess.PIPE)
+    cmd_process.stdin.write('100\n'.encode('utf-8'))
+    cmd_process.stdin.write('100\n'.encode('utf-8'))
+    cmd_process.stdin.write('0.1\n'.encode('utf-8'))
+    cmd_process.stdin.write('3\n'.encode('utf-8'))
+    info, err = cmd_process.communicate()
+
+    print(info.decode('gbk').split('\r\n'))
+    # print(err)
