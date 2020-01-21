@@ -39,10 +39,10 @@ if __name__ == '__main__':
                                                    stdin=subprocess.PIPE,
                                                    stdout=subprocess.PIPE,
                                                    stderr=subprocess.PIPE)
-                    cmd_process.stdin.write((str(sample_size_now) + '\n').encode('gbk'))
-                    cmd_process.stdin.write((str(elite_size_now) + '\n').encode('gbk'))
-                    cmd_process.stdin.write((str(smooth_parameter_now) + '\n').encode('gbk'))
-                    cmd_process.stdin.write((str(iteration_number_now) + '\n').encode('gbk'))
+                    cmd_process.stdin.write((str(sample_size_now) + '\n').encode('utf-8'))
+                    cmd_process.stdin.write((str(elite_size_now) + '\n').encode('utf-8'))
+                    cmd_process.stdin.write((str(smooth_parameter_now) + '\n').encode('utf-8'))
+                    cmd_process.stdin.write((str(iteration_number_now) + '\n').encode('utf-8'))
                     info, err = cmd_process.communicate()
                     tmp = info.decode('gbk').split('\r\n')
                     consume_time = tmp[0]

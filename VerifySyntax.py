@@ -14,4 +14,4 @@ if __name__ == '__main__':
     info, err = cmd_process.communicate()
 
     print(info.decode('gbk').split('\r\n'))
-    # print(err)
+    print(err.decode('gbk').split('\r\n'))
