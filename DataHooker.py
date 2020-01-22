@@ -15,8 +15,8 @@ def write_in_csv(row_write_in):
 
 if __name__ == '__main__':
     cnt = 0
-    dataset_list = ['appendicitis.dat', 'banana.dat', 'phoneme.dat', 'ring.dat']
-    sample_size_list = [106, 5300, 5404, 7400]
+    dataset_list = ['banana.dat', 'phoneme.dat', 'ring.dat']
+    sample_size_list = [5300, 5404, 7400]
     column_name_list = ['id', 'fileName', 'sampleSize', 'eliteSize', 'smoothParameter', 'iterationNumber',
                         'consumesTimes', 'optimalValue']
     for sample_count in range(len(dataset_list)):
