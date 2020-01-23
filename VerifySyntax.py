@@ -15,3 +15,5 @@ if __name__ == '__main__':
 
     print(info.decode('gbk').split('\r\n'))
     print(err.decode('gbk').split('\r\n'))
+if __name__ == '__main__':
+    print(2**10)
